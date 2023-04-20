@@ -1,0 +1,44 @@
+name: randevu_al
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.19.4 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  get: ^4.6.5
+  cupertino_icons: ^1.0.2
+  supabase_flutter: ^1.5.0
+  intl: ^0.18.0
+  skeletons: ^0.0.3
+  cached_network_image: ^3.2.3
+  loader_overlay: ^2.1.0
+  flutter_barcode_scanner: ^2.0.0
+  image_picker: ^0.8.7
+  flutter_email_sender: ^5.1.0
+  flutter_svg: ^2.0.4
+  syncfusion_flutter_calendar: ^21.1.41
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+  assets:
+    - assets/images/
