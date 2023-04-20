@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:randevu_al/core/theme/app_theme.dart';
 import 'package:randevu_al/root_binding.dart';

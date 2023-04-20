@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:randevu_al/components/custom_scaffold.dart';
+import 'package:randevu_al/components/user_activity_detector.dart';
 import 'package:randevu_al/controllers/auth_controller.dart';
 import 'package:randevu_al/controllers/home_controller.dart';
 import 'package:randevu_al/core/helpers/custom_logger.dart';
@@ -16,32 +17,34 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
-    return CustomScaffold(
-      appBar: AppBar(
-        title: Text('Hoşgeldiniz, ${authController.user?.name}'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed(
-                NotificationsPage.route,
-              );
-            },
-            icon: const Icon(Icons.notifications),
-          ),
-          IconButton(
-            onPressed: () {
-              authController.logout().then(
-                    (value) => Get.offAllNamed(
-                      LoginPage.route,
-                    ),
-                  );
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
+    return UserActivityDetector(
+      child: CustomScaffold(
+        appBar: AppBar(
+          title: Text('Hoşgeldiniz, ${authController.user?.name}'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.toNamed(
+                  NotificationsPage.route,
+                );
+              },
+              icon: const Icon(Icons.notifications),
+            ),
+            IconButton(
+              onPressed: () {
+                authController.logout().then(
+                      (value) => Get.offAllNamed(
+                        LoginPage.route,
+                      ),
+                    );
+              },
+              icon: const Icon(Icons.logout),
+            ),
+          ],
+        ),
+        isShowBackButton: false,
+        body: _buildBody(),
       ),
-      isShowBackButton: false,
-      body: _buildBody(),
     );
   }
 
