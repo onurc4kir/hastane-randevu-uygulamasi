@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+import 'package:randevu_al/core/helpers/custom_logger.dart';
 import 'package:randevu_al/core/utilities/dialog_helper.dart';
 import 'package:randevu_al/models/user_model.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -15,6 +18,8 @@ class AuthController extends GetxController {
       Get.find<SupabaseDatabaseService>();
   final Rx<User?> _user = Rx(null);
   User? get user => _user.value;
+
+  Timer? _inactivityTimer;
 
   bool get isLoggedIn => _user.value != null ? true : false;
   AuthController() {
@@ -110,5 +115,43 @@ class AuthController extends GetxController {
     }
 
     return Get.offAllNamed(HomePage.route);
+  }
+
+  void startNewTimer() {
+    printI('Activity Timer Started');
+
+    stopTimer();
+    if (_user.value != null) {
+      _inactivityTimer = Timer.periodic(const Duration(minutes: 2), (_) {
+        timedOut();
+      });
+    }
+  }
+
+  /// Stops the existing timer if it exists
+  void stopTimer() {
+    printI('Activity Timer Stopped');
+
+    if (_inactivityTimer != null ||
+        (_inactivityTimer?.isActive != null && _inactivityTimer!.isActive)) {
+      _inactivityTimer?.cancel();
+    }
+  }
+
+  /// Track user activity and reset timer
+  void trackUserActivity([_]) async {
+    printI('User Activity Detected');
+    if (_user.value != null && _inactivityTimer != null) {
+      startNewTimer();
+    }
+  }
+
+  /// Called if the user is inactive for a period of time and opens a dialog
+  Future<void> timedOut() async {
+    printI("No Activity , Logging Out");
+    stopTimer();
+    if (_user.value != null) {
+      await logout().then((value) => Get.offAllNamed(LoginPage.route));
+    }
   }
 }
