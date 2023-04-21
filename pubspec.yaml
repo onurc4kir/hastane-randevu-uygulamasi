@@ -24,6 +24,7 @@ dependencies:
   flutter_email_sender: ^5.1.0
   flutter_svg: ^2.0.4
   syncfusion_flutter_calendar: ^21.1.41
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -42,3 +43,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - .env
