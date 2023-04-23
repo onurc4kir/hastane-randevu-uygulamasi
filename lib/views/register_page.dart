@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     context: context,
                     icon: const Icon(Icons.mail),
                     description:
-                        "We sent a mail to $mail. Please confirm your mail.",
+                        "$mail adresli mailinize gelen bildirimi onaylarak hesabınızı doğrulayabilirsiniz.",
                     okButtonText: "OK",
                     okButtonOnTap: () => Get.back(),
                   ).then((value) => Get.back());
@@ -114,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   initialValue: kDebugMode ? "test1@gmail.com" : null,
                   onSaved: (m) => mail = m,
                   validator: (m) =>
-                      (m ?? "").isNotEmpty ? null : "Invalid email",
+                      (m ?? "").isNotEmpty ? null : "Geçersiz mail",
                   decoration: const InputDecoration(
                     hintText: 'Mail',
                   ),
@@ -191,7 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   initialValue: kDebugMode ? "Test 1" : null,
                   onSaved: (m) => name = m,
                   validator: (m) =>
-                      (m ?? "").isNotEmpty ? null : "Invalid name",
+                      (m ?? "").isNotEmpty ? null : "Geçersiz isim",
                   decoration: const InputDecoration(
                     hintText: 'İsim',
                   ),
@@ -247,7 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   readOnly: isLoading,
                   initialValue: kDebugMode ? "23" : null,
                   onSaved: (m) => age = int.parse(m!),
-                  validator: (m) => (m ?? "").isNotEmpty ? null : "Invalid age",
+                  validator: (m) => (m ?? "").isNotEmpty ? null : "Geçersiz yaş",
                   decoration: const InputDecoration(
                     hintText: 'Yaş',
                   ),
