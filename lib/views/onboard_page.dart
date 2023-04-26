@@ -17,9 +17,10 @@ class _OnboardPageState extends State<OnboardPage> {
   @override
   void initState() {
     final authController = Get.find<AuthController>();
-    authController.currentUser().then((value) {
-      authController.redirectUser(value);
-    });
+    authController
+        .currentUser()
+        .then((value) => authController.redirectUser(value));
+
     super.initState();
   }
 
